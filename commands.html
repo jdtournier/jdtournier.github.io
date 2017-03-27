@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Using the command line</title>
+<link rel="stylesheet" href="stylesheet.css" type="text/css" media=screen>
+</head>
+
+
+
+<body>
+<a name=top></a>
+<table width=100% class=nav style='margin-bottom: 2em'>
+<tr>
+<td><a href='paths.html'>&lt;&lt; previous</a></td>
+<td><a href='#top'>top of page</a></td>
+<td><a href='index.html'>table of contents</a></td>
+<td><a href='tips.html'>next &gt;&gt;</a></td>
+</tr>
+</table>
+
+<h1>Basic commands</h1>
+
+<hr>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href='#pwd'>pwd - print working directory</a></li>
+<li><a href='#cd'>cd - change working directory</a></li>
+<li><a href='#ls'>ls - list files</a></li>
+<li><a href='#cp'>cp - copy files or folders</a></li>
+<li><a href='#mv'>mv - move/rename files or folders</a></li>
+<li><a href='#examples'>Examples of typical command use</a></li>
+</ul>
+<hr>
+
+<p>
+Below is a list of commands that are very commonly used. Of these, <a href='#cd'><kbd class=cmd>cd</kbd></a> and <a href='#ls'><kbd class=cmd>ls</kbd></a> are essential to using the command line, and you should be familiar with them.
+</p>
+<p>
+Each command has a <em>syntax</em> line, which gives a brief description of how it should be used. The first item on the line is always the name of the command, followed by a number of <a href='intro.html#cmd_args'>arguments</a>. Arguments given in square brackets are optional and can be omitted. If an argument is followed by three dots ('<kbd>...</kbd>'), it means that any number of that type of argument can be provided, and each will be processed in turn. In addition, any <a href='intro.html#cmd_options'>options</a> that are of particular interest are listed in the corresponding section for each command. Each part of the command syntax is highlighted using the different styles outlined in the <a href='intro.html#arg_styles'>options section</a>.
+</p>
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+
+<h2><a name="pwd">pwd - print working directory</a></h2>
+<h3>Syntax:</h3>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>pwd</kbd>
+</pre>
+<h3>Purpose:</h3><p>
+Print the current <a href='paths.html#cwd'>working directory</a> onto the screen.
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+
+<h2><a name="cd">cd - change working directory</a></h2>
+
+<h3>Syntax:</h3>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cd</kbd><kbd class='arg'> [folder]</kbd>
+</pre>
+<h3>Purpose:</h3>
+<p>
+Change the current <a href='paths.html#cwd'>working directory</a>. If no <kbd class=arg>folder</kbd> is specified, the current working directory will be set to the home folder. Otherwise, it will be set to <kbd class=arg>folder</kbd>, assuming that it is a valid <a href='paths.html'>path</a>.
+
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="ls">ls - list files</a></h2>
+<h3>Syntax:</h3>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd><kbd class=opt> [option]...</kbd><kbd class='arg'> [target]...</kbd>
+</pre>
+
+<h3>Purpose:</h3>
+<p>
+List files. If no <kbd class=arg>target</kbd> is specified, the contents of the current <a href='paths.html#cwd'>working directory</a> are listed. Otherwise, the files specified are listed in the order provided, assuming that they are valid <a href='paths.html'>paths</a>. If a <kbd class=arg>target</kbd> is a folder, its <em>contents</em> will be listed.
+
+<h3>Options:</h3>
+<ul>
+<li><kbd class=opt>-a</kbd><br>
+list all files, including hidden files (hidden files are those that start with a full stop '.').</li>
+<li><kbd class=opt>-l</kbd><br>
+provide a long listing, including file size, ownership, permissions, and modification date.</li>
+</ul>
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="cp">cp - copy files or folders</a></h2>
+<h3>Syntax:</h3>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cp</kbd><kbd class=opt> [option]...</kbd><kbd class='arg'> source target</kbd>
+</pre><pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cp</kbd><kbd class=opt> [option]...</kbd><kbd class='arg'> source... folder</kbd>
+</pre>
+<h3>Purpose:</h3>
+<p>
+In its first form, copy the file <kbd class=arg>source</kbd> to create the file <kbd class=arg>target</kbd>, assuming both are valid <a href='paths.html'>paths</a>. You should be aware that in general, if the file <kbd class=arg>target</kbd> already exists, it will be overwritten (although in MR2, the systems have been set up to ask for confirmation first).
+<p>
+The second form is used to copy one or more <kbd class=arg>source</kbd> files into the <kbd class=arg>target</kbd> folder. In this case, <kbd class=arg>target</kbd> must be a pre-exising folder. Each newly created file will have the same base name as the original.
+
+<h3>Options:</h3>
+<ul>
+<li><kbd class=opt>-i</kbd><br>
+ask for confirmation before overwriting any files (default for MR2).
+</li>
+<li><kbd class=opt>-r</kbd><br>
+recursive copy: use this option to copy an entire folder and its contents.
+</li>
+</ul>
+
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="mv">mv - move/rename files or folders</a></h2>
+<h3>Syntax:</h3>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>mv</kbd><kbd class=opt> [option]...</kbd><kbd class='arg'> source target</kbd>
+</pre>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>mv</kbd><kbd class=opt> [option]...</kbd><kbd class='arg'> source... folder</kbd>
+</pre>
+<h3>Purpose:</h3>
+<p>
+In its first form, move or rename the file (or folder) <kbd class=arg>source</kbd> to <kbd class=arg>target</kbd>, assuming both are valid <a href='paths.html'>paths</a>. Note that renaming is essentially equivalent to moving the file to a different location, if <kbd class=arg>source</kbd> and <kbd class=arg>target</kbd> reside in different folders.
+<p>
+The second form is used to move one or more <kbd class=arg>source</kbd> files into the <kbd class=arg>target</kbd> folder. In this case, <kbd class=arg>target</kbd> must be a pre-existing folder.
+
+<h3>Options:</h3>
+<ul>
+<li><kbd class=opt>-i</kbd><br>
+ask for confirmation before overwriting any files (default for MR2).
+</li>
+</ul>
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name='examples'>Examples of typical command use</a></h2>
+<p>
+Below are some examples of commands in typical use, illustrating some of the concepts explained in this document. To fully understand the examples, you may need to refer back to the sections on <a href='paths.html'>specifying filenames</a>, using <a href='paths.html#spec_path'>special filenames</a>, or <a href='paths.html#wildcards'>using wildcards</a>.
+
+<p>
+To change your current <a href='paths.html#cwd'>working directory</a> to its parent folder (move one branch down the directory tree):
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cd</kbd><kbd class='arg'> ..</kbd>
+</pre>
+
+<p>
+To change your current <a href='paths.html#cwd'>working directory</a> from whatever it was to the <kbd>data</kbd> folder in your home directory:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cd</kbd><kbd class='arg'> ~/data</kbd>
+</pre>
+
+<p>
+To list the headers for all normalised smoothed SPM images (assumed to start with <kbd>ns</kbd> and end with <kbd>.hdr</kbd>) from the <kbd>controls</kbd> folder:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd><kbd class='arg'> controls/ns*.hdr</kbd>
+</pre>
+
+<p>
+To move the file <kbd>data.mat</kbd>, residing in the current <a href='paths.html#cwd'>working directory</a>, into the parent folder of that directory:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>mv</kbd><kbd class='arg'> data.mat ..</kbd>
+</pre>
+
+<p>
+To copy the file <kbd>info.txt</kbd> from the folder <kbd>important</kbd> into the current <a href='paths.html#cwd'>working directory</a>:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cp</kbd><kbd class='arg'> important/info.txt .</kbd>
+</pre>
+
+<p>
+To copy all SPM header files from the <kbd>data</kbd> folder in your home directory  into the <kbd>headers</kbd> folder in the current <a href='paths.html#cwd'>working directory</a>:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cp</kbd><kbd class='arg'> ~/data/*.hdr headers</kbd>
+</pre>
+
+<p>
+To copy all Siemens Vision images for study 3 of patient Joe Bloggs into the current <a href='paths.html#cwd'>working directory</a>:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>cp</kbd><kbd class='arg'> /MR2/scantmp/vision/bloggsj_010203_123/*-3-*.ima .</kbd>
+</pre>
+
+
+<table width=100% class=nav style='margin-top: 2em'>
+<tr>
+<td><a href='paths.html'>&lt;&lt; previous</a></td>
+<td><a href='#top'>top of page</a></td>
+<td><a href='index.html'>table of contents</a></td>
+<td><a href='tips.html'>next &gt;&gt;</a></td>
+</tr>
+</table>
+</body>
+</html>

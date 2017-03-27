@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Using the command line</title>
+<link rel="stylesheet" href="stylesheet.css" type="text/css" media=screen>
+</head>
+
+
+
+<body>
+
+<a name=top></a>
+<table width=100% class=nav style='margin-bottom: 2em'>
+<tr>
+<td><a href='intro.html'>&lt;&lt; previous</a></td>
+<td><a href='#top'>top of page</a></td>
+<td><a href='index.html'>table of contents</a></td>
+<td><a href='commands.html'>next &gt;&gt;</a></td>
+</tr>
+</table>
+
+
+<h1>Specifying filenames</h1>
+
+<hr>
+<h2>Table of contents</h1>
+<ul>
+<li><a href='#filesystem'>Files and folders</a></li>
+<li><a href='#abs_path'>Absolute paths</a></li>
+<li><a href='#cwd'>The working directory</a></li>
+<li><a href='#rel_path'>Relative paths</a></li>
+<li><a href='#spec_path'>Special filenames</a></li>
+<li><a href='#wildcards'>Using wildcards</a></li>
+</ul>
+<hr>
+
+<p>
+Filenames are often supplied to programs as arguments. For this reason, it is essential to have a good understanding of how files are specified on the command line. 
+</p>
+
+
+<h2><a name="filesystem">Files and folders</a></h2>
+<a name='filetree'><img class=fig src="filestruct.png"></a>
+<p>
+Files and folders are stored on computers using a folder or <em>directory</em> structure. For example, on a Windows computer, you might find a folder called 'MyDocuments', within which there might be a 'data' folder, and within that some more folders, etc. Specifying a file or folder is simply a matter of providing enough information to uniquely identify it.
+</p>
+<p>
+The easiest way to visualise the directory structure is to think of it as a tree. If you listed the contents of the root folder (the root of the tree), you would find a number of other folders (the main branches). For example, one of these folders would be the <kbd>home</kbd> folder, where user accounts are kept. These folders might contain more folders (smaller branches) and/or files (leaves). This is illustrated in the right hand side figure.
+<p>
+Here, the folder called 'donald' can be uniquely identified by starting from the root folder, going into <kbd>home</kbd>, then <kbd>dali</kbd>, then <kbd>a</kbd>, to find <kbd>donald</kbd>. This process can be thought of as specifying the <em>path</em> to the file or folder of interest. In fact, this is the exact term used in Unix jargon, essentially meaning 'an unambiguous file name'. Thus, specifying a filename boils down to providing a unique, unambiguous path to the file.
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="abs_path"></a>Absolute paths</h2>
+<p>
+On Unix, the root of the tree is always referred to using a simple forward slash. Folders are referred to using their names, and are delimited using a forward slash. For example, the full, absolute path to the folder 'donald' in the <a href="#filetree">figure</a> above is:
+<pre>
+/home/dali/a/donald
+</pre>
+<p>
+This simply means: starting from the root folder ('<kbd>/</kbd>'), go into folder <kbd>home</kbd>, then <kbd>dali</kbd>, then <kbd>a</kbd>, to find <kbd>donald</kbd>. This is an example of an <em>absolute</em> path, because the start point of the path (the root folder) has been specified within the filename. Thus, an absolute path <em>must</em> start with a forward slash - if it does not, it becomes a <a href="#rel_path"><em>relative</em> path</a>, explained below.
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="cwd">The working directory</a></h2>
+<p>
+When using the command line, you will often find that many of the files you are manipulating reside in the same folder. It therefore makes sense to specify this folder as your <em>working directory</em>, and then simply refer to each file by its name, rather than its absolute path. This is exactly what the working directory is, and it can save you a lot of unnecessary typing. 
+<p>
+You can also think of it as your current location on the directory tree. For example, if your current working directory is <kbd>/home/dali/a/donald</kbd>, you can imagine that you have climbed up branch <kbd>home</kbd>, then up branch <kbd>dali</kbd>, then up branch <kbd>a</kbd>, then up branch <kbd>donald</kbd>, and since you're sitting there, you have direct access to all the files and folders that spring from that branch. 
+<p>
+Your working directory can be specified with the command <a href="commands.html#cd"><kbd class=cmd>cd</kbd></a>, and queried using the command <a href="commands.html#pwd"><kbd class=cmd>pwd</kbd></a> (both described below).
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="rel_path">Relative paths</a></h2>
+<p>
+Relative paths are so called because their starting point is the current <a href='commands.html#cwd'>working directory</a>, rather than the root folder. Thus, they are relative to the current working directory, and only make sense if the working directory is also known.
+<p>
+<a name='filetree2'><img class=fig src="filestruct2.png"e></a>
+<p>
+For example, the working directory might currently be <kbd>/home/dali/a/donald</kbd>. In this folder there may be a number of other files and folders, as illustrated in the right hand side figure.  Since the folder <kbd>data</kbd> is in the current working directory, it can be referred to unambiguously using the <em>relative</em> path <kbd>data</kbd>, rather than its full <em>absolute</em> path <kbd>/home/dali/a/donald/data</kbd>. As you can see, this requires considerably less typing.
+<p>
+When you specify a relative path, it will actually be converted to an absolute path, simply by taking the current working directory (an absolute path), appending a forward slash, and appending the relative path you supplied after that. For example, if you supply the relative path <kbd>data</kbd>, the system will add up <kbd>'/home/dali/a/donald'</kbd> + <kbd>'/'</kbd> + <kbd>'data'</kbd> to give the absolute path.
+<p>
+Since the system simply adds the relative path to the working directory, you can see that files and folders further along the directory tree can also be accessed easily. For example, the <kbd>Desktop</kbd> folder contains another folder, <kbd>abc</kbd>. This folder can be specified using the relative path <kbd>Desktop/abc</kbd> (assuming your current working directory is <kbd>/home/dali/a/donald</kbd>).
+<p>
+Of course, if you changed your current working directory, the relative path would need to change accordingly. Using the same example as previously, if <kbd>/home/dali/a/donald/Desktop</kbd> was now your current working directory, you could use the simpler relative path <kbd>abc</kbd> to refer to the same folder.
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="spec_path">Special filenames</a></h2>
+<p>
+A few shortcuts have special significance, and you should learn to use them, or at least know of them. These are:
+<ul>
+<li> <kbd>~</kbd> (tilda) <br>
+shorthand for your home folder. For example, I could refer to the <kbd>abc</kbd> folder using <kbd>~/Desktop/abc</kbd>, since my home folder is <kbd>/home/dali/a/donald</kbd>.</li>
+<li> <kbd>.</kbd> (single full stop) <br>
+the current directory. For example, if my current working directory is <kbd>/home/dali/a/donald</kbd>, I can refer to the <kbd>abc</kbd> folder by specifying <kbd>./Desktop/abc</kbd>, or even <kbd>Desktop/./abc</kbd>. Although this may not look very useful, there are occasions when it is helpful (see <a href='commands.html#examples'>here</a> for example).</li>
+<li> <kbd>..</kbd> (double full stop) <br>
+the parent folder of the current directory. For example, if my current working directory is <kbd>/home/dali/a/donald/Desktop</kbd>, I can still refer to the <kbd>data</kbd> folder using the relative path <kbd>../data</kbd>. This shortcut essentially means "drop the previous folder name from the path", or "go back down to the previous branch". Here are some alternative, less useful ways of referring to the same folder, just to illustrate the idea:
+<ul>
+<li><kbd>../../donald/data</kbd></li>
+<li><kbd>abc/../../data</kbd></li>
+<li><kbd>~/Desktop/../data</kbd></li>
+</ul></li>
+</ul> 
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="wildcards">Using wildcards</a></h2>
+<p>
+There are a number of characters that have special meaning to the <a href='intro.html#shell'>shell</a>. Some of these characters are referred to as <em>wildcards</em>, and their purpose is to ask the shell to find all filenames that match the wildcard, and <em>expand</em> them on the command line. Although there are a number of wildcards, the only one that will be detailed here is the <kbd>*</kbd> character.
+<p>
+The <kbd>*</kbd> character essentially means 'any number or any characters'. When the <a href='intro.html#shell'>shell</a> encounters this character in an argument, it will look for any files that match that pattern, and append them one after the other where the original pattern used to be. This can be better understood using some examples.
+<p>
+Imagine that within the current <a href='#cwd'>working directory</a>, we have the files <kbd>file1.txt</kbd>, <kbd>file2.txt</kbd>, <kbd>file3.txt</kbd>, <kbd>info.txt</kbd>, <kbd>image1.dat</kbd>, and <kbd>image2.dat</kbd>. If we simply list the files (using the <a href='commands.html#ls'><kbd class=cmd>ls</kbd></a> command), we would see:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd>
+file1.txt   file2.txt   file3.txt 
+image1.dat  image2.dat  info.txt 
+</pre>
+<p>
+If we only wanted to list the text files, we could use a wildcard, and specify that we are only interested in files that end with <kbd>.txt</kbd>:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd><kbd class='arg'> *.txt</kbd>
+file1.txt   file2.txt   file3.txt   info.txt
+</pre>
+<p>
+We might only be interested in those text files that start with <kbd>file</kbd>. In this case, we could type:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd><kbd class='arg'> file*.txt</kbd>
+file1.txt   file2.txt   file3.txt
+</pre>
+<p>
+This use of wildcards becomes very useful when dealing with folders containing large numbers of similar files, and only a subgroup of them is of interest. See the <a href='commands.html#examples'>here</a> for more relevant examples. 
+</p>
+
+
+<table width=100% class=nav style='margin-top: 2em'>
+<tr>
+<td><a href='intro.html'>&lt;&lt; previous</a></td>
+<td><a href='#top'>top of page</a></td>
+<td><a href='index.html'>table of contents</a></td>
+<td><a href='commands.html'>next &gt;&gt;</a></td>
+</tr>
+</table>
+</body>
+</html>

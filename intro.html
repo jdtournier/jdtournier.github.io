@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Using the command line</title>
+<link rel="stylesheet" href="stylesheet.css" type="text/css" media=screen>
+</head>
+
+
+
+<body>
+<a name=top></a>
+<table width=100% class=nav style="margin-bottom: 2em">
+<tr>
+<td><a href="index.html">&lt;&lt; previous</a></td>
+<td><a href="#top">top of page</a></td>
+<td><a href="index.html">table of contents</a></td>
+<td><a href="paths.html">next &gt;&gt;</a></td>
+</tr>
+</table>
+
+
+<h1>Introduction</h1>
+<hr>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#cmd_look">What is the command line?</a></li>
+<li><a href="#cmd_start">How to access the command line</a></li>
+<li><a href="#cmd_struc">Basic structure of a command</a></li>
+<li><a href="#cmd_args">Command line arguments</a></li>
+<li><a href="#cmd_options">Command line options</a></li>
+<li><a href="#cmd_space">Dealing with spaces in arguments</a></li>
+</ul>
+<hr>
+
+
+<h2><a name="cmd_look">What is the command line?</a></h2>
+<p>
+The command line is simply a way of passing instructions to the computer. It is a text-only interface, and commands are supplied to the <a href="#shell">shell</a> by typing them in and pressing the return key. Any output produced by these commands is printed out on the same text interface. Although daunting at first, the command line provides a very rich interface to the available functionality, and it is worth learning how to use it. 
+</p>
+<p>
+The command line interface will print out a prompt, after which commands can be typed. After the command has completed, the prompt will be printed out again, indicating that the <a href="#shell">shell</a> is ready to accept new commands.
+</p>
+<p>
+An important point to note is that Unix is case-sensitive: a file called <kbd>Data</kbd> is <em>not</em> the same as a file called <kbd>data</kbd>. 
+</p>
+<p>
+The command line prompt can vary from system to system, but usually consists of some text followed by a character such as <kbd>$</kbd>, <kbd>#</kbd> or <kbd>&gt;</kbd>. However, the systems in MR2 have been configured to display the following prompt:
+</p>
+<pre>username@machine:path &gt;</pre>
+<p>
+where <kbd>username</kbd> corresponds to your own, <kbd>machine</kbd> corresponds to the name of the system you are currently logged onto, and <kbd>path</kbd> indicates your <a href="paths.html#cwd">current working directory</a>. 
+</p>
+<p>
+If the prompt ends with a <kbd>#</kbd>, this most likely means that you are logged in as root (the super-user). If this is the case, please log out before anything bad happens. 
+</p>
+
+<h3>Technical note</h3>
+<p>
+This section describes what is involved in a command line session in slightly more technical detail. You can safely skip ahead to the next section if you wish.
+</p>
+<p>
+A session will typically involve two separate programs:
+</p>
+<ol>
+<li>the <a name="shell"><strong>shell</strong></a>: the program that actually interprets the commands that are typed in, and takes the appropriate action. There are a number of different shells available, each with their own syntax rules. The default shell in MR2 is the Bourne Again Shell (bash).</li>
+<li>the <strong>terminal</strong>: the program responsible for displaying the output of the shell, and what the user types in. There are a number of different terminals available, each with different levels of sophistication. In MR2, you will probably be using the <kbd>konsole</kbd> terminal program.</li>
+</ol>
+<p>
+This leads to a bewildering array of combinations between the different shells and terminal programs available. Thankfully, in MR2, you will almost always be using <kbd>konsole</kbd> as the terminal and <kbd>bash</kbd> as the shell, and this is what you should learn how to use.
+<p>
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href="#top">top of page</a></td>
+<td align=right><a href="index.html">table of contents</a></td>
+</tr>
+</table>
+
+<h2><a name="cmd_start">How to access the command line</a></h2>
+<p>
+There are many ways to start a command line session. In MR2, the easiest way to start a session is by launching a program called <kbd>konsole</kbd> (the default KDE terminal). This can be done in a number of ways:
+</p>
+<ul>
+<li><img class=inline src="terminal.png">Click on the <a href="#shell">shell</a> icon, which should be located either on the toolbar at the bottom of the screen, or on your desktop. It should look something like that shown on the right. Bear in mind that the icons on your desktop will depend on your current theme, etc. and might therefore differ substantially.</li>
+<li style="padding-top: 1em"><img class=inline src="menu.png">Find the 'konsole', 'shell', or 'terminal' entry in the applications menu, which you should find located on the extreme left of the toolbar at the bottom of your screen. An example of what this might look like is shown on the right. Note that your menu structure might look significantly different from this, and you might need to look in the other subfolders to find it.</li>
+<li style="clear: both; padding-top: 1em"><img class=inline src="mr2apps.png">Click on the "MR2 applications" icon. This should be on your desktop, and look like that shown here. This will open a window with a number of other icons, one of which should be the terminal icon.</li>
+<li style="clear: both; padding-top: 1em">Launch the <kbd>konsole</kbd> program directly using the "Run Command" utility. This can be accessed either via the applications menu (see above), or directly by pressing the <kbd>Alt+F2</kbd> key combination. This should open a small window into which commands can be typed directly (this is essentially a mini command line). The terminal program can then be launched by entering <kbd>konsole</kbd> in the box provided.</li>
+</ul>
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href="#top">top of page</a></td>
+<td align=right><a href="index.html">table of contents</a></td>
+</tr>
+</table>
+
+<h2><a name="cmd_struc">Basic Structure of a command</a></h2>
+<p>
+In the simplest form, a command consists of a line of text, which is first broken up by splitting it using spaces as boundaries. The first 'word' <strong>must</strong> be the command name, corresponding to a real program to be executed. All other 'words' will eventually be passed to the program as <em>arguments</em> that should provide it with enough information to perform what is intended.
+</p>
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href="#top">top of page</a></td>
+<td align=right><a href="index.html">table of contents</a></td>
+</tr>
+</table>
+<h2><a name="cmd_args">Command line arguments</a></h2>
+<p>
+To perform whatever action is required, the program that is being run may need some additional information. This information can be supplied to the program via the <em>arguments</em> that follow it in the command. Essentially, arguments are a series of 'words' specified in the right order so that the program can understand what is required of it. 
+</p>
+<p>
+For example, you need to supply two arguments to copy a file: the original file name, and the name of the file to be created. The program to do this, <a href="commands.html#cp"><kbd class=cmd>cp</kbd></a>, expects the first argument to be the name of the file to be copied, and the second argument to be the name of the duplicate file to be created. If it does not find two arguments, it will produce an error message.
+</p>
+<p>
+Note that some programs may accept a number of arguments, but use default values if they are omitted (example of these are <a href="commands.html#cd"><kbd class=cmd>cd</kbd></a> and <a href="commands.html#ls"><kbd class=cmd>ls</kbd></a>). Other programs may accept variable numbers of arguments, and process each argument in turn.
+</p>
+
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href="#top">top of page</a></td>
+<td align=right><a href="index.html">table of contents</a></td>
+</tr>
+</table>
+<h2><a name="cmd_options">Command line options</a></h2>
+<p>
+There is a special type of argument that you might encounter, often referred to as a command line <em>option</em> or <em>switch</em>. The purpose of these optional arguments is to modify the behaviour of the program in some way. Command line options always start with a minus symbol to distinguish them from normal arguments. For example, passing the appropriate option (<kbd class=opt>-l</kbd>) to the <a href="commands.html#ls"><kbd class=cmd>ls</kbd></a> command when listing the files in the current folder will produce a longer listing, including information such as file size and modification time as well as the file names normally output.
+<p>
+Command line options can also require additional arguments. In this case, these additional arguments should be entered immediately after the option itself.
+<p>
+<a name="arg_styles">Below</a> are some typical command examples. Note the different styles used to highlight the various parts of a command (the <kbd class=prompt>&gt; </kbd> symbol indicates the prompt): 
+<ul>
+<li><kbd class=cmd>command name</kbd></li>
+<li><kbd class=arg>argument</kbd></li>
+<li><kbd class=opt>option</kbd></li>
+<li><kbd class=oparg>additional argument required by a preceeding option</kbd></li>
+</ul>
+<p>
+To list the contents of the current working directory:
+<pre><kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd></pre> 
+
+<p>
+To list the contents of the current working directory, along with the file permissions, owner, size and modification date:
+<pre><kbd class=prompt>&gt; </kbd><kbd class=cmd>ls </kbd><kbd class=opt>-l</kbd></pre> 
+
+<p>
+To copy the file <kbd>source</kbd>, creating the file <kbd>dest</kbd>:
+<pre><kbd class=prompt>&gt; </kbd><kbd class=cmd>cp </kbd><kbd class=arg>source dest</kbd></pre>
+
+<p>
+To convert image <kbd>source.mrv</kbd> (MR2 format) into image <kbd>dest.img</kbd> (Analyse format):
+<pre><kbd class=prompt>&gt; </kbd><kbd class=cmd>mrconvert </kbd><kbd class=arg>source.mrv dest.img</kbd></pre>
+
+<p>
+To convert image <kbd>source.mrv</kbd> into image <kbd>dest.img</kbd>, scaling the intensity by a factor of 3 and changing the voxel size to 1.25 x 1 x 1 mm:
+<pre><kbd class=prompt>&gt; </kbd><kbd class=cmd>mrconvert </kbd><kbd class=opt>-m </kbd><kbd class=oparg>3 </kbd><kbd class=opt>-p </kbd><kbd class=oparg>1.25 1 1 </kbd><kbd class=arg>source.mrv dest.img</kbd></pre>
+
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href="#top">top of page</a></td>
+<td align=right><a href="index.html">table of contents</a></td>
+</tr>
+</table>
+<h2><a name="cmd_space">Dealing with spaces in arguments</a></h2>
+<p>
+As previsouly mentioned, the command actually typed in will first be split using spaces as boundaries. In certain cases, it may be necessary to provide arguments that contain spaces within them. A common example of this is when file names contain spaces (note that this should be avoided, especially since SPM is often not able to deal with these). This is obviously a problem, since an argument with a space in it will be interpreted as two separate arguments. To supply an argument with a space in it, use the following syntax. 
+<p>
+As an example, if we need to supply the argument "<kbd class=arg>argument with spaces</kbd>" to some command, we can use any of the following:
+<pre>'argument with spaces'</pre>
+<pre>"argument with spaces"</pre>
+<pre>argument\ with\ spaces</pre>
+<p>
+In the last example, the backslash character tells the shell to ignore the space and treat it as a normal character.
+
+<table width=100% class=nav style="margin-top: 2em">
+<tr>
+<td><a href="index.html">&lt;&lt; previous</a></td>
+<td><a href="#top">top of page</a></td>
+<td><a href="index.html">table of contents</a></td>
+<td><a href="paths.html">next &gt;&gt;</a></td>
+</tr>
+</table>
+</body>
+</html>

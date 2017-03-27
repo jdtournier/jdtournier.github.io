@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Using the command line</title>
+<link rel="stylesheet" href="stylesheet.css" type="text/css" media=screen>
+</head>
+
+
+
+<body>
+<a name=top></a>
+<table width=100% class=nav style='margin-bottom: 2em'>
+<tr>
+<td><a href='commands.html'>&lt;&lt; previous</a></td>
+<td><a href='#top'>top of page</a></td>
+<td><a href='index.html'>table of contents</a></td>
+<td>next &gt;&gt;</td>
+</tr>
+</table>
+
+<h1>Useful tips</h1> 
+<hr>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href='#history'>Previous command history - the up arrow key</a></li>
+<li><a href='#tab'>Command completion - the tab key</a></li>
+</ul>
+<hr>
+
+<p>
+The commands that you might type in can get quite long, and using the command line can quickly become laborious. You are strongly encouraged to read the tips below, which can not only save you a lot of unnecessary typing, but also help you avoid making mistakes and typos. Some of these features may not be immediately obvious, so you are advised to spend a little time familiarising yourself with them. 
+</p>
+<h2><a name="history">Previous command history - the up arrow key</a></h2> 
+<p>
+You will often find yourself typing a whole series of similar commands, that differ only by a few characters each time. It would be tedious if you had to type each one of them in individually. Similarly, you may find that the long command you just typed in has failed because of a single little typo. To save yourself the time and the hassle, use of the command history.
+</p>
+<p>
+The <a href='intro.html#shell'>shell</a> remembers all the commands that you recently typed in. At any time, you can set the text of your command to any of these previous commands, as if you had just typed it in. It is then trivial to go back and edit those sections that need to be amended, using the left and right arrow keys, etc.
+</p>
+<p>
+To access previous commands, simply press the up arrow. This will give you the last command you typed in. Pressing it again will produce the command before that, and so on. You can also press the down arrow key to find more recent commands if you have gone too far back in the command history.
+</p>
+
+
+
+
+<table width=100% class=midnav>
+<tr>
+<td align=left><a href='#top'>top of page</a></td>
+<td align=right><a href='index.html'>table of contents</a></td>
+</tr>
+</table>
+<h2><a name="tab">Command completion - the tab key</a></h2>
+<p>
+You will often need to supply filenames as arguments to commands. Some of these may be long and hard to remember, for example, if they contain patient names and dates. However, the computer knows everything about which files are in which folder, and can therefore help the user to type in the right filename. You will find that often, it is only necessary to type in the first few letters of the file and the <a href='intro.html#shell'>shell</a> will fill in the rest for you.
+</p>
+<p>
+You can ask the computer to attempt to complete the filename by pressing the <kbd>TAB</kbd> key (on the far left of the keyboard, above the <kbd>CAPS LOCK</kbd> key). At this point, the <a href='intro.html#shell'>shell</a> will look at the fragment that you have already typed in, and compare it to the list of files in the corresponding folder. For example, if you type:
+</p>
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd><kbd class='arg'> /MR2/scantmp/vision/b</kbd>
+</pre>
+<p>
+and press the <kbd>TAB</kbd> key, the <a href='intro.html#shell'>shell</a> will look at the contents of the <kbd>/MR2/scantmp/vision/</kbd> folder, and see if any of these files or folders begin with a <kbd>b</kbd>. At this point, one of three things can happen:
+</p>
+<ul>
+<li>there is only one file that begins with the fragment you supplied.  In this case, the <a href='intro.html#shell'>shell</a> will complete the filename for you. Using the example above, if the only file or folder in <kbd>/MR2/scantmp/vision/</kbd> that started with a <kbd>b</kbd> was <kbd>bloggsj_010203_123</kbd>, then the command would be changed to:
+<pre>
+<kbd class=prompt>&gt; </kbd><kbd class=cmd>ls</kbd><kbd class='arg'> /MR2/scantmp/vision/bloggsj_010203_123/</kbd>
+</pre>
+</li>
+<li>there are more than one file that begin with the fragment you supplied. In this case, the <a href='intro.html#shell'>shell</a> will simply emit a beep to notify the user. Pressing the <kbd>TAB</kbd> key a second time will cause the shell to output a list of all the potential candidates, so that the user can select the right one. You should then just type in more of the filename and press the <kbd>TAB</kbd> key again once you think that fragment is unambiguous.<br>
+Using the example above, there might have been another folder in <kbd>/MR2/scantmp/vision/</kbd> that started with a <kbd>b</kbd>, say <kbd>brownj_030201_789</kbd>. In this case, the first <kbd>TAB</kbd> key press would have produced a beep, and the second would have produced a list like the following:
+<pre>
+bloggsj_010203_123        brownj_030201_789
+</pre>
+You then simply need to type in an extra <kbd>l</kbd> and press <kbd>TAB</kbd> again for the <a href='intro.html#shell'>shell</a> to change the command as above. 
+</li>
+<li>there are no files that start with the fragment you supplied. In this case, the <a href='intro.html#shell'>shell</a> will also emit a beep to notify the user. This time, pressing the <kbd>TAB</kbd> key again will only cause repeated beeping. You should amend what you have typed in, and make sure that it is correct up to that point.
+</li>
+</ul>
+ 
+
+
+<table width=100% class=nav style='margin-top: 2em'>
+<tr>
+<td><a href='commands.html'>&lt;&lt; previous</a></td>
+<td><a href='#top'>top of page</a></td>
+<td><a href='index.html'>table of contents</a></td>
+<td>next &gt;&gt;</td>
+</tr>
+</table>
+</body>
+</html>

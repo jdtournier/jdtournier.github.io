@@ -1,0 +1,28 @@
+body { margin: 1em }
+h1 { color: teal }
+h1.title { text-align: center; color: black; background: #FFFFCC; border: 2px solid black; }
+h2 { color: teal }
+h3 { font-style: oblique }
+p { text-align: justify }
+p.top { text-align: right; font-style: oblique; margin-top: 2em; padding-bottom: 0.3em; border-bottom: 1px solid black; clear: both }
+p.cmdinfo { font-style: oblique; font-weight: bold }
+pre { padding-left: 1em; background: #E0E0E0; border: 1px solid black }
+kbd.cmd { color: black; font-weight: bold }
+kbd.arg { color: black }
+kbd.opt { color: maroon }
+kbd.oparg { color: olive }
+kbd.prompt { color: gray }
+li.section { font-size: large }
+img.inline { float: right; margin-left: 1em } 
+img.fig { float: right; margin-left: 1em; margin-top: 0.3em; padding: 1em; border: 1px solid black }
+th { text-align: left; padding-bottom: 0.5em }
+td.arg { padding-left: 2em; padding-right: 2em }
+td.opt { padding-right: 2em }
+table.nav { font-style: oblique; margin-top: 1em; border-bottom: 1px solid black; border-top: 1px solid black; clear: both }
+table.nav td { text-align: center }
+table.midnav { font-style: oblique; margin-top: 1em; margin-top: 2em; margin-bottom: 2em; border-bottom: 1px solid black; clear: both }
+
+table.cmd td { vertical-align: top; padding-bottom: 0.5em }
+dl.syntax { margin-left: 2em }
+dl.syntax dt { font-family: monospace }
+dl.syntax dd { padding-bottom: 1em }
